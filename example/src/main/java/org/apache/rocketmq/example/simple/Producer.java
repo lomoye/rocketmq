@@ -25,14 +25,16 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 public class Producer {
     public static void main(String[] args) throws MQClientException, InterruptedException {
 
-        DefaultMQProducer producer = new DefaultMQProducer("ProducerGroupName");
+        DefaultMQProducer producer = new DefaultMQProducer("helloGroup");
+        producer.setNamesrvAddr("118.178.178.125:30001");
+        producer.setVipChannelEnabled(false); //不能设置,否则会调整端口...
 
         producer.start();
 
-        for (int i = 0; i < 128; i++)
+        for (int i = 0; i < 100000; i++)
             try {
                 {
-                    Message msg = new Message("TopicTest",
+                    Message msg = new Message("TEST-B",
                         "TagA",
                         "OrderID188",
                         "Hello world".getBytes(RemotingHelper.DEFAULT_CHARSET));
