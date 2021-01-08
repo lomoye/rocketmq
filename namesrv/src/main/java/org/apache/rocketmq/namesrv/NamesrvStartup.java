@@ -113,6 +113,7 @@ public class NamesrvStartup {
         //将properties对象的值赋值到对于的namesrvConfig字段中
         MixAll.properties2Object(ServerUtil.commandLine2Properties(commandLine), namesrvConfig);
 
+        //mqnamesrv脚本里会获取 ROCKETMQ_HOME=`dirname "$PRG"`/..
         if (null == namesrvConfig.getRocketmqHome()) {
             System.out.printf("Please set the %s variable in your environment to match the location of the RocketMQ installation%n", MixAll.ROCKETMQ_HOME_ENV);
             System.exit(-2);

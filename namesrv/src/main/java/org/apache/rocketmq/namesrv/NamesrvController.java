@@ -65,8 +65,11 @@ public class NamesrvController {
         this.namesrvConfig = namesrvConfig;
         this.nettyServerConfig = nettyServerConfig;
         this.kvConfigManager = new KVConfigManager(this);
+        //路由信息
         this.routeInfoManager = new RouteInfoManager();
+        //管理broker发生异常或者关闭连接或者长时间空闲时候需要做的事情
         this.brokerHousekeepingService = new BrokerHousekeepingService(this);
+        //管理总的配置信息
         this.configuration = new Configuration(
             log,
             this.namesrvConfig, this.nettyServerConfig
